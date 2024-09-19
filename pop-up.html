@@ -1,0 +1,47 @@
+<style>
+        /* Estilos para el pop-up */
+        .popup {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .overlay {
+            display: none; /* Oculatar la superposición */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+</style>
+
+<!-- Superposición -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Contenido del pop-up -->
+<div class="popup" id="popup">
+	👉 <a href="https://cpurized.com" id="closePopup" target="_blank" rel="noopener">Psssst… ¡hey!</a>
+</div>
+
+<script>
+    // Función para mostrar el pop-up
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+    
+    // Evento para cerrar el pop-up al hacer clic en el hiperenlace
+    document.getElementById('closePopup').onclick = function() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    };
+</script>
