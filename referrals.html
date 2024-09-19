@@ -1,0 +1,35 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	
+	const emailField = document.getElementById('email');
+	const referralCodeField = document.getElementById('referralCodeREFERIDO');
+	const referralURLField = document.getElementById('referralURLREFERIDO');
+	
+    function generateReferralCode() {
+		//alert(emailField.value);
+        // Verifica que el email no esté vacío antes de generar el hash
+        if (emailField.value) {
+            const hash = CryptoJS.MD5(emailField.value.trim()).toString();
+            //const shortHash = hash.substring(0, 8); // Truncamos el hash
+            referralCodeField.value = hash;
+			referralURLField.value = "https://cpurized.com/?referralCode=" + hash;
+        }
+    }
+	
+    emailField.addEventListener('blur', generateReferralCode);
+	
+	
+	// Function to get query parameter by name
+	function getQueryParameter(name) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(name);
+	}
+
+	// Set referral code value from URL
+	const referralCode = getQueryParameter('referralCode');
+	if (referralCode) {
+		document.getElementById('referralCodeINVITADO').value = referralCode;
+	}
+});
+</script>
